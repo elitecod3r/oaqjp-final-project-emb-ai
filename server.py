@@ -1,3 +1,6 @@
+ Executing this file initiates the emotion detector over the Flask 
+    channel and deployed on localhost:5000.
+''''''
 from flask import Flask, request, render_template
 from EmotionDetection.emotion_detection import emotion_detector
 
@@ -20,8 +23,9 @@ def sent_analyzer():
             f"'joy': {rsp['joy']} and " + \
             f"'sadness': {rsp['sadness']}. " + \
             f"The dominant emotion is <b>{rsp['dominant_emotion']}</b>."
-    else:
-        return "<b>Invalid text! Please try again!</b>"
+
+    # Return for the error case
+    return "<b>Invalid text! Please try again!</b>"
 
 @app.route("/")
 def render_index_page():
