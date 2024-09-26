@@ -12,14 +12,16 @@ def sent_analyzer():
     '''
     txt = request.args.get('textToAnalyze')
     rsp = emotion_detector(txt)
-
-    return "For the given statement, the system response is " + \
-           f"'anger': {rsp['anger']}, " + \
-           f"'disgust': {rsp['disgust']}, " + \
-           f"'fear': {rsp['fear']}, " + \
-           f"'joy': {rsp['joy']} and " + \
-           f"'sadness': {rsp['sadness']}. " + \
-           f"The dominant emotion is <b>{rsp['dominant_emotion']}</b>."
+    if rsp['dominant_emotion']:
+        return "For the given statement, the system response is " + \
+            f"'anger': {rsp['anger']}, " + \
+            f"'disgust': {rsp['disgust']}, " + \
+            f"'fear': {rsp['fear']}, " + \
+            f"'joy': {rsp['joy']} and " + \
+            f"'sadness': {rsp['sadness']}. " + \
+            f"The dominant emotion is <b>{rsp['dominant_emotion']}</b>."
+    else:
+        return "<b>Invalid text! Please try again!</b>"
 
 @app.route("/")
 def render_index_page():

@@ -8,7 +8,8 @@ def emotion_detector(text_to_analyse):
     response = requests.post(url, json = myobj, headers=header)
     response_dict = json.loads(response.text)
 
-    # set default values in case of error
+    # set default values in case of error. 
+    # This will handle the case for status code 400 and other failures as well
     anger_score = None 
     disgust_score = None 
     fear_score = None
